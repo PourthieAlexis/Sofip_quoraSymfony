@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %} {% block title %}Hello
+HomeController!{%endblock%} {% block body %}
+
+<section class="home">
+  <div class="sidebar">
+    <button class="btn btn-primary">
+      <i class="fa-solid fa-question"></i> Poser une question
+    </button>
+    <ul>
+      <li>
+        <a href=""><i class="fa-solid fa-house"></i>Liste de questions</a>
+      </li>
+      <li>
+        <a href=""><i class="fa-solid fa-pen"></i>Mes questions</a>
+      </li>
+      <li>
+        <a href=""><i class="fa-solid fa-puzzle-piece"></i>Mes réponses</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Hello Home</h1>
+  </div>
+</section>
+{% endblock %}
