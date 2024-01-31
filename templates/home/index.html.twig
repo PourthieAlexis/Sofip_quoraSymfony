@@ -1,26 +1,18 @@
-{% extends 'base.html.twig' %} {% block title %}Hello
-HomeController!{%endblock%} {% block body %}
+{% extends 'base.html.twig' %}
+{% block title %}Hello
+HomeController!{%endblock%}
+{% block body %}
 
-<section class="home">
-  <div class="sidebar">
-    <button class="btn btn-primary">
-      <i class="fa-solid fa-question"></i> Poser une question
-    </button>
-    <ul>
-      <li>
-        <a href=""><i class="fa-solid fa-house"></i>Liste de questions</a>
-      </li>
-      <li>
-        <a href=""><i class="fa-solid fa-pen"></i>Mes questions</a>
-      </li>
-      <li>
-        <a href=""><i class="fa-solid fa-puzzle-piece"></i>Mes réponses</a>
-      </li>
-    </ul>
-  </div>
+	{% include 'sidebar.html.twig' %}
 
-  <div class="content">
-    <h1>Hello Home</h1>
-  </div>
-</section>
+	<div class="content">
+		<h1>Hello Home</h1>
+		<ul>
+			{% for question in questions %}
+				<li>{{ question.title }}
+					-
+					{{ question.content }}</li>
+			{% endfor %}
+		</ul>
+	</div>
 {% endblock %}

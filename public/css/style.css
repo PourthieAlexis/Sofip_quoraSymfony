@@ -30,7 +30,11 @@ footer p {
 
 main {
   flex: 1;
+  display: flex;
+  height: 100%;
+  padding: 2rem;
 }
+
 .profilePicture img {
   width: 4rem;
   height: 4rem;
@@ -69,13 +73,26 @@ main {
   width: 0.5rem;
 }
 
-.home {
-  display: flex;
-  height: 100%;
-  padding: 2rem;
-}
-
 .content {
   flex: 1;
   padding-left: 2rem;
+}
+
+.formContainer {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 2px 2px 2px 2px #9d9d9d;
+  flex-direction: column;
+  margin: 0px 2rem 2rem 2rem;
+}
+
+.formGroup {
+  margin: 1rem;
+}
+
+.formInput {
+  background-color: grey;
+  width: 25rem;
 }
