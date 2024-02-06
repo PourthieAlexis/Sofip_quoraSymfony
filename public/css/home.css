@@ -1,0 +1,35 @@
+ul {
+  padding: 0;
+}
+
+.cardContainer {
+  display: flex;
+  background-color: white;
+  width: 80%;
+  padding: 1rem 2rem;
+  box-shadow: 2px 2px 2px 2px #9d9d9d;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.cardContainer span {
+  font-size: larger;
+  font-weight: 700;
+}
+
+.cardContainer .authorComment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.authorComment p {
+  margin: 0;
+}
+
+.profilePicture {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}

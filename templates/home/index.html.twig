@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Hello
 HomeController!{%endblock%}
+
 {% block body %}
 
 	{% include 'sidebar.html.twig' %}
@@ -8,10 +9,24 @@ HomeController!{%endblock%}
 	<div class="content">
 		<h1>Hello Home</h1>
 		<ul>
-			{% for question in questions %}
-				<li>{{ question.title }}
-					-
-					{{ question.content }}</li>
+			{% for question in questions |slice(0,3) %}
+				<li class="cardContainer">
+					<span>{{ question.title }}</span>
+					<p class="py-2 flex-1">{{ question.content }}</p>
+					<div class="d-flex justify-content-between align-items-center w-100">
+						<div class="d-flex gap-2">
+							<img src={{ question.author.profileImage }} alt="profile picture" class="profilePicture">
+							<p class="m-0">
+								Demandé par
+								{{ question.author.name }}
+							</p>
+						</div>
+						<p>
+							<i class="fa-regular fa-comment"></i>
+							{{ question.comments|length }}
+						</p>
+					</div>
+				</li>
 			{% endfor %}
 		</ul>
 	</div>
