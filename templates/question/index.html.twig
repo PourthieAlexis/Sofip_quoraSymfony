@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello QuestionController!
+{% block title %}Poser une question
 {% endblock %}
 
 {% block body %}
@@ -8,20 +8,31 @@
 	<div class="formContainer">
 		<h1>Poser une question</h1>
 
-		{{ form_start(form)}}
+		{% if form_errors(form)|length > 0 %}
+			<div class="alert alert-danger">
+				<ul>
+					{% for error in form_errors(form) %}
+						<li>{{ error.message }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		{{ form_start(form) }}
 
 		<div class="formGroup">
 			{{ form_label(form.title, 'Title', {'label_attr': {'class': 'formLabel'}}) }}
 			{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.title) }}
 		</div>
 
 		<div class="formGroup">
 			{{ form_label(form.content, 'Content', {'label_attr': {'class': 'formLabel'}}) }}
 			{{ form_widget(form.content, {'attr': {'class': 'form-control h-25'}}) }}
+			{{ form_errors(form.content) }}
 		</div>
 
 		<button type="submit" class="btn btn-primary">Demander une réponse</button>
 		{{ form_end(form) }}
 	</div>
-
 {% endblock %}

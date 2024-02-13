@@ -6,6 +6,8 @@ use App\Entity\Question;
 use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,9 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     #[Route('/question/ask', name: 'question_name')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
         $question = new Question();
+        $user = $security->getUser();
+
+        if (!$user) {
+            throw new AccessDeniedException('Vous devez être connecté pour poser une question.');
+        }
+
+        $question->setAuthor($user);
+        $question->setVote(0);
+
         $formQuestion = $this->createForm(QuestionType::class, $question);
         $formQuestion->handleRequest($request);
 

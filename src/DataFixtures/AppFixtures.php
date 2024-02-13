@@ -15,6 +15,8 @@ class AppFixtures extends Fixture
         // Création de l'auteur
         $author = new Author();
         $author->setName("John Doe");
+        $author->setEmail("alexispourthie@gmail.com");
+        $author->setPassword("123");
         $author->setProfileImage("https://randomuser.me/api/portraits/men/62.jpg");
 
         $manager->persist($author);
