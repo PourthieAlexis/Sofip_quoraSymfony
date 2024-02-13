@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Author;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -15,16 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     #[Route('/question/ask', name: 'question_name')]
-    public function index(Request $request, EntityManagerInterface $entityManager, Security $security): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, AuthorRepository $authorRepo): Response
     {
         $question = new Question();
-        $user = $security->getUser();
-
+        $user = $authorRepo->findBy(["name" => "John Doe"]);
         if (!$user) {
             throw new AccessDeniedException('Vous devez être connecté pour poser une question.');
         }
 
-        $question->setAuthor($user);
+        $question->setAuthor($user[0]);
         $question->setVote(0);
 
         $formQuestion = $this->createForm(QuestionType::class, $question);
